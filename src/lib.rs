@@ -34,20 +34,28 @@ impl Iterator for LineRasterizer {
 
     fn next(&mut self) -> Option<Point> {
         if self.step < self.dx + self.dy {
-            let e1 = self.error + self.dy;
-            let e2 = self.error - self.dx;
-
-            if e1.abs() < e2.abs() {
+            if self.dx == self.dy {
                 self.x_cursor += self.sgn_x;
-                self.error = e1;
-            } else {
                 self.y_cursor += self.sgn_y;
-                self.error = e2;
+                self.step += 2;
+
+                return Some((self.x_cursor, self.y_cursor));
+            } else {
+                let e1 = self.error + self.dy;
+                let e2 = self.error - self.dx;
+
+                if e1.abs() < e2.abs() {
+                    self.x_cursor += self.sgn_x;
+                    self.error = e1;
+                } else {
+                    self.y_cursor += self.sgn_y;
+                    self.error = e2;
+                }
+
+                self.step += 1;
+
+                return Some((self.x_cursor, self.y_cursor));
             }
-
-            self.step += 1;
-
-            return Some((self.x_cursor, self.y_cursor));
         }
 
         None

@@ -76,4 +76,21 @@ mod tests {
         assert_eq!(points.contains(&(2, 3)), true);
         assert_eq!(points.contains(&(2, 4)), true);
     }
+
+    #[test]
+    fn test_perfect_diagonal() {
+        let line_rasterizer_iter = LineRasterizer::new((0, 0), (4, 4));
+        let mut points = Vec::new();
+
+        for point in line_rasterizer_iter {
+            points.push(point);
+        }
+
+        assert_eq!(points.len(), 4);
+
+        assert_eq!(points.contains(&(1, 1)), true);
+        assert_eq!(points.contains(&(2, 2)), true);
+        assert_eq!(points.contains(&(3, 3)), true);
+        assert_eq!(points.contains(&(4, 4)), true);
+    }
 }
