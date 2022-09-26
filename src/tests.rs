@@ -27,9 +27,6 @@ mod tests {
 
         assert_eq!(points.contains(&(2, 4)), true);
         assert_eq!(points2.contains(&(2, 4)), true);
-
-        assert_eq!(points.contains(&(2, 5)), true);
-        assert_eq!(points2.contains(&(2, 4)), true);
     }
 
     #[test]
@@ -53,9 +50,6 @@ mod tests {
 
         assert_eq!(points.contains(&(2, 3)), true);
         assert_eq!(points2.contains(&(2, 3)), true);
-
-        assert_eq!(points.contains(&(2, 4)), true);
-        assert_eq!(points2.contains(&(0, 0)), true);
     }
 
     #[test]
@@ -67,14 +61,13 @@ mod tests {
             points.push(point);
         }
 
-        assert_eq!(points.len(), 6);
+        assert_eq!(points.len(), 5);
 
         assert_eq!(points.contains(&(0, 1)), true);
         assert_eq!(points.contains(&(1, 1)), true);
         assert_eq!(points.contains(&(1, 2)), true);
         assert_eq!(points.contains(&(1, 3)), true);
         assert_eq!(points.contains(&(2, 3)), true);
-        assert_eq!(points.contains(&(2, 4)), true);
     }
 
     #[test]
@@ -86,11 +79,10 @@ mod tests {
             points.push(point);
         }
 
-        assert_eq!(points.len(), 4);
+        assert_eq!(points.len(), 3);
 
         assert_eq!(points.contains(&(1, 1)), true);
         assert_eq!(points.contains(&(2, 2)), true);
         assert_eq!(points.contains(&(3, 3)), true);
-        assert_eq!(points.contains(&(4, 4)), true);
     }
 }
