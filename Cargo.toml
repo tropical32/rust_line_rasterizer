@@ -1,0 +1,13 @@
+[package]
+name = "rust_line_rasterizer"
+version = "0.1.0"
+edition = "2021"
+description = "A crate for line rasterization."
+license = "MIT OR Apache-2.0"
+authors = ["Kamil Dydo <dydokamil@icloud.com>"]
+repository = "https://github.com/dydokamil/rust_line_rasterizer"
+homepage="https://crates.io/crates/rust_line_rasterizer"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
