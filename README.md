@@ -10,7 +10,7 @@
 
     let points: Vec<Point> = LineRasterizer::new((0, 0), (2, 4)).collect();
     println!("points = {:?}", points);
-    // points = [(0, 1), (1, 1), (1, 2), (1, 3), (2, 3), (2, 4)]
+    // points = [(0, 1), (1, 1), (1, 2), (1, 3), (2, 3)]
 
 ### Iterate points
 
@@ -24,5 +24,4 @@
         // (1, 2)
         // (1, 3)
         // (2, 3)
-        // (2, 4)
     }
