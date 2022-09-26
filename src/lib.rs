@@ -1,3 +1,4 @@
+https://stackoverflow.com/questions/5186939/algorithm-for-drawing-a-4-connected-line
 mod tests;
 
 pub type Point = (isize, isize);

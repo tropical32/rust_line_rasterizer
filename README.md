@@ -14,7 +14,7 @@
 
     let line_rasterizer_iter = LineRasterizer::new((0, 0), (2, 4));
 
-    for point in points {
+    for point in line_rasterizer_iter {
         // (0, 1)
         // (1, 1)
         // (1, 2)
