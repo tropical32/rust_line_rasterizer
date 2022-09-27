@@ -12,7 +12,6 @@ pub struct LineRasterizer {
     y_cursor: isize,
     sgn_x: isize,
     sgn_y: isize,
-    step_size: isize,
 }
 
 impl LineRasterizer {
@@ -29,7 +28,6 @@ impl LineRasterizer {
             y_cursor: start.1,
             sgn_x: if start.0 < end.0 { 1 } else { -1 },
             sgn_y: if start.1 < end.1 { 1 } else { -1 },
-            step_size: if dx == dy { 2 } else { 1 },
         };
     }
 }
@@ -38,31 +36,27 @@ impl Iterator for LineRasterizer {
     type Item = Point;
 
     fn next(&mut self) -> Option<Point> {
-        if self.step + self.step_size < self.dx + self.dy {
-            if self.dx == self.dy {
-                self.x_cursor += self.sgn_x;
-                self.y_cursor += self.sgn_y;
-                self.step += self.step_size;
+        let e1 = self.error + self.dy;
+        let e2 = self.error - self.dx;
 
-                return Some((self.x_cursor, self.y_cursor));
-            } else {
-                let e1 = self.error + self.dy;
-                let e2 = self.error - self.dx;
-
-                if e1.abs() < e2.abs() {
-                    self.x_cursor += self.sgn_x;
-                    self.error = e1;
-                } else {
-                    self.y_cursor += self.sgn_y;
-                    self.error = e2;
-                }
-
-                self.step += self.step_size;
-
-                return Some((self.x_cursor, self.y_cursor));
-            }
+        if e1.abs() == e2.abs() {
+            self.x_cursor += self.sgn_x;
+            self.y_cursor += self.sgn_y;
+            self.step += 2;
+        } else if e1.abs() < e2.abs() {
+            self.x_cursor += self.sgn_x;
+            self.error = e1;
+            self.step += 1;
+        } else {
+            self.y_cursor += self.sgn_y;
+            self.error = e2;
+            self.step += 1;
         }
 
-        None
+        if self.step >= self.dx + self.dy {
+            return None;
+        }
+
+        return Some((self.x_cursor, self.y_cursor));
     }
 }
