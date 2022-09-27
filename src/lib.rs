@@ -42,6 +42,7 @@ impl Iterator for LineRasterizer {
         if e1.abs() == e2.abs() {
             self.x_cursor += self.sgn_x;
             self.y_cursor += self.sgn_y;
+            self.error = 0;
             self.step += 2;
         } else if e1.abs() < e2.abs() {
             self.x_cursor += self.sgn_x;
