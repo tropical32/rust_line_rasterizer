@@ -137,4 +137,46 @@ mod tests {
         assert_eq!(points.contains(&(-1, 1)), false);
         assert_eq!(points2.contains(&(-1, 1)), false);
     }
+
+    #[test]
+    fn test_long_line_one_diagonal_intersection() {
+        let points: Vec<Point> = LineRasterizer::new((0, 0), (11, 5)).collect();
+
+        assert_eq!(points.contains(&(1, 0)), true);
+        assert_eq!(points.contains(&(1, 1)), true);
+        assert_eq!(points.contains(&(2, 1)), true);
+        assert_eq!(points.contains(&(3, 1)), true);
+        assert_eq!(points.contains(&(3, 2)), true);
+        assert_eq!(points.contains(&(4, 2)), true);
+        assert_eq!(points.contains(&(5, 2)), true);
+        assert_eq!(points.contains(&(6, 3)), true);
+        assert_eq!(points.contains(&(7, 3)), true);
+        assert_eq!(points.contains(&(8, 3)), true);
+        assert_eq!(points.contains(&(8, 4)), true);
+        assert_eq!(points.contains(&(9, 4)), true);
+        assert_eq!(points.contains(&(10, 4)), true);
+        assert_eq!(points.contains(&(10, 5)), true);
+        assert_eq!(points.len(), 14);
+    }
+
+    #[test]
+    fn test_long_line_one_diagonal_intersection_flipped() {
+        let points: Vec<Point> = LineRasterizer::new((0, 0), (11, -5)).collect();
+
+        assert_eq!(points.contains(&(1, 0)), true);
+        assert_eq!(points.contains(&(1, -1)), true);
+        assert_eq!(points.contains(&(2, -1)), true);
+        assert_eq!(points.contains(&(3, -1)), true);
+        assert_eq!(points.contains(&(3, -2)), true);
+        assert_eq!(points.contains(&(4, -2)), true);
+        assert_eq!(points.contains(&(5, -2)), true);
+        assert_eq!(points.contains(&(6, -3)), true);
+        assert_eq!(points.contains(&(7, -3)), true);
+        assert_eq!(points.contains(&(8, -3)), true);
+        assert_eq!(points.contains(&(8, -4)), true);
+        assert_eq!(points.contains(&(9, -4)), true);
+        assert_eq!(points.contains(&(10, -4)), true);
+        assert_eq!(points.contains(&(10, -5)), true);
+        assert_eq!(points.len(), 14);
+    }
 }
