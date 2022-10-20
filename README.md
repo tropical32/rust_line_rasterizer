@@ -8,20 +8,26 @@
 
     use rust_line_rasterizer::LineRasterizer;
 
-    let points: Vec<Point> = LineRasterizer::new((0, 0), (2, 4)).collect();
-    println!("points = {:?}", points);
-    // points = [(0, 1), (1, 1), (1, 2), (1, 3), (2, 3)]
+    fn main(){
+        let points: Vec<_> = LineRasterizer::new((0, 0), (2, 4)).collect();
+        println!("points = {:?}", points);
+        // points = [(0, 1), (1, 1), (1, 2), (1, 3), (2, 3)]
+    }
+
 
 ### Iterate points
 
     use rust_line_rasterizer::LineRasterizer;
 
-    let line_rasterizer_iter = LineRasterizer::new((0, 0), (2, 4));
+    fn main() {
+        let line_rasterizer_iter = LineRasterizer::new((2, 4), (0, 0));
 
-    for point in line_rasterizer_iter {
-        // (0, 1)
-        // (1, 1)
-        // (1, 2)
-        // (1, 3)
-        // (2, 3)
+        for point in line_rasterizer_iter {
+            println!("{:?}", point);
+            // (2, 3)
+            // (1, 3)
+            // (1, 2)
+            // (1, 1)
+            // (0, 1)
+        }
     }
