@@ -1,4 +1,6 @@
 // https://stackoverflow.com/questions/5186939/algorithm-for-drawing-a-4-connected-line
+use std::cmp::Ordering;
+
 mod tests;
 
 pub type Point = (isize, isize);
@@ -19,7 +21,7 @@ impl LineRasterizer {
         let dx = (end.0 - start.0).abs();
         let dy = (end.1 - start.1).abs();
 
-        return Self {
+        Self {
             error: 0,
             step: 0,
             dx,
@@ -28,7 +30,7 @@ impl LineRasterizer {
             y_cursor: start.1,
             sgn_x: if start.0 < end.0 { 1 } else { -1 },
             sgn_y: if start.1 < end.1 { 1 } else { -1 },
-        };
+        }
     }
 }
 
@@ -39,25 +41,29 @@ impl Iterator for LineRasterizer {
         let e1 = self.error + self.dy;
         let e2 = self.error - self.dx;
 
-        if e1.abs() == e2.abs() {
-            self.x_cursor += self.sgn_x;
-            self.y_cursor += self.sgn_y;
-            self.error += self.dy - self.dx;
-            self.step += 2;
-        } else if e1.abs() < e2.abs() {
-            self.x_cursor += self.sgn_x;
-            self.error = e1;
-            self.step += 1;
-        } else {
-            self.y_cursor += self.sgn_y;
-            self.error = e2;
-            self.step += 1;
+        match e1.abs().cmp(&e2.abs()) {
+            Ordering::Less => {
+                self.x_cursor += self.sgn_x;
+                self.error = e1;
+                self.step += 1;
+            }
+            Ordering::Greater => {
+                self.y_cursor += self.sgn_y;
+                self.error = e2;
+                self.step += 1;
+            }
+            Ordering::Equal => {
+                self.x_cursor += self.sgn_x;
+                self.y_cursor += self.sgn_y;
+                self.error += self.dy - self.dx;
+                self.step += 2;
+            }
         }
 
         if self.step >= self.dx + self.dy {
             return None;
         }
 
-        return Some((self.x_cursor, self.y_cursor));
+        Some((self.x_cursor, self.y_cursor))
     }
 }

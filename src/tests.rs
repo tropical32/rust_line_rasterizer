@@ -1,5 +1,5 @@
 #[cfg(test)]
-mod tests {
+mod test {
     use crate::LineRasterizer;
     use crate::Point;
 
@@ -10,23 +10,23 @@ mod tests {
 
         assert_eq!(points.len(), points2.len());
 
-        assert_eq!(points.contains(&(0, 1)), true);
-        assert_eq!(points2.contains(&(0, 1)), true);
+        assert!(points.contains(&(0, 1)));
+        assert!(points2.contains(&(0, 1)));
 
-        assert_eq!(points.contains(&(1, 1)), true);
-        assert_eq!(points2.contains(&(1, 1)), true);
+        assert!(points.contains(&(1, 1)));
+        assert!(points2.contains(&(1, 1)));
 
-        assert_eq!(points.contains(&(1, 2)), true);
-        assert_eq!(points2.contains(&(1, 2)), true);
+        assert!(points.contains(&(1, 2)));
+        assert!(points2.contains(&(1, 2)));
 
-        assert_eq!(points.contains(&(1, 3)), true);
-        assert_eq!(points2.contains(&(1, 3)), true);
+        assert!(points.contains(&(1, 3)));
+        assert!(points2.contains(&(1, 3)));
 
-        assert_eq!(points.contains(&(1, 4)), true);
-        assert_eq!(points2.contains(&(1, 4)), true);
+        assert!(points.contains(&(1, 4)));
+        assert!(points2.contains(&(1, 4)));
 
-        assert_eq!(points.contains(&(2, 4)), true);
-        assert_eq!(points2.contains(&(2, 4)), true);
+        assert!(points.contains(&(2, 4)));
+        assert!(points2.contains(&(2, 4)));
     }
 
     #[test]
@@ -36,20 +36,20 @@ mod tests {
 
         assert_eq!(points.len(), points2.len());
 
-        assert_eq!(points.contains(&(0, 1)), true);
-        assert_eq!(points2.contains(&(0, 1)), true);
+        assert!(points.contains(&(0, 1)));
+        assert!(points2.contains(&(0, 1)));
 
-        assert_eq!(points.contains(&(1, 1)), true);
-        assert_eq!(points2.contains(&(1, 1)), true);
+        assert!(points.contains(&(1, 1)));
+        assert!(points2.contains(&(1, 1)));
 
-        assert_eq!(points.contains(&(1, 2)), true);
-        assert_eq!(points2.contains(&(1, 2)), true);
+        assert!(points.contains(&(1, 2)));
+        assert!(points2.contains(&(1, 2)));
 
-        assert_eq!(points.contains(&(1, 3)), true);
-        assert_eq!(points2.contains(&(1, 3)), true);
+        assert!(points.contains(&(1, 3)));
+        assert!(points2.contains(&(1, 3)));
 
-        assert_eq!(points.contains(&(2, 3)), true);
-        assert_eq!(points2.contains(&(2, 3)), true);
+        assert!(points.contains(&(2, 3)));
+        assert!(points2.contains(&(2, 3)));
     }
 
     #[test]
@@ -63,11 +63,11 @@ mod tests {
 
         assert_eq!(points.len(), 5);
 
-        assert_eq!(points.contains(&(0, 1)), true);
-        assert_eq!(points.contains(&(1, 1)), true);
-        assert_eq!(points.contains(&(1, 2)), true);
-        assert_eq!(points.contains(&(1, 3)), true);
-        assert_eq!(points.contains(&(2, 3)), true);
+        assert!(points.contains(&(0, 1)));
+        assert!(points.contains(&(1, 1)));
+        assert!(points.contains(&(1, 2)));
+        assert!(points.contains(&(1, 3)));
+        assert!(points.contains(&(2, 3)));
     }
 
     #[test]
@@ -81,9 +81,9 @@ mod tests {
 
         assert_eq!(points.len(), 3);
 
-        assert_eq!(points.contains(&(1, 1)), true);
-        assert_eq!(points.contains(&(2, 2)), true);
-        assert_eq!(points.contains(&(3, 3)), true);
+        assert!(points.contains(&(1, 1)));
+        assert!(points.contains(&(2, 2)));
+        assert!(points.contains(&(3, 3)));
     }
 
     #[test]
@@ -93,10 +93,10 @@ mod tests {
 
         assert_eq!(points.len(), points2.len());
         assert_eq!(points.len(), 2);
-        assert_eq!(points.contains(&(2, 2)), false);
-        assert_eq!(points2.contains(&(2, 2)), false);
-        assert_eq!(points.contains(&(3, 1)), false);
-        assert_eq!(points2.contains(&(3, 1)), false);
+        assert!(!points.contains(&(2, 2)));
+        assert!(!points2.contains(&(2, 2)));
+        assert!(!points.contains(&(3, 1)));
+        assert!(!points2.contains(&(3, 1)));
     }
 
     #[test]
@@ -106,10 +106,10 @@ mod tests {
 
         assert_eq!(points.len(), points2.len());
         assert_eq!(points.len(), 2);
-        assert_eq!(points.contains(&(0, 2)), false);
-        assert_eq!(points2.contains(&(0, 2)), false);
-        assert_eq!(points.contains(&(1, 3)), false);
-        assert_eq!(points2.contains(&(1, 3)), false);
+        assert!(!points.contains(&(0, 2)));
+        assert!(!points2.contains(&(0, 2)));
+        assert!(!points.contains(&(1, 3)));
+        assert!(!points2.contains(&(1, 3)));
     }
 
     #[test]
@@ -119,10 +119,10 @@ mod tests {
 
         assert_eq!(points.len(), points2.len());
         assert_eq!(points.len(), 2);
-        assert_eq!(points.contains(&(2, 0)), false);
-        assert_eq!(points2.contains(&(2, 0)), false);
-        assert_eq!(points.contains(&(3, 1)), false);
-        assert_eq!(points2.contains(&(3, 1)), false);
+        assert!(!points.contains(&(2, 0)));
+        assert!(!points2.contains(&(2, 0)));
+        assert!(!points.contains(&(3, 1)));
+        assert!(!points2.contains(&(3, 1)));
     }
 
     #[test]
@@ -132,30 +132,30 @@ mod tests {
 
         assert_eq!(points.len(), points2.len());
         assert_eq!(points.len(), 2);
-        assert_eq!(points.contains(&(0, 0)), false);
-        assert_eq!(points2.contains(&(0, 0)), false);
-        assert_eq!(points.contains(&(-1, 1)), false);
-        assert_eq!(points2.contains(&(-1, 1)), false);
+        assert!(!points.contains(&(0, 0)));
+        assert!(!points2.contains(&(0, 0)));
+        assert!(!points.contains(&(-1, 1)));
+        assert!(!points2.contains(&(-1, 1)));
     }
 
     #[test]
     fn test_long_line_one_diagonal_intersection() {
         let points: Vec<Point> = LineRasterizer::new((0, 0), (11, 5)).collect();
 
-        assert_eq!(points.contains(&(1, 0)), true);
-        assert_eq!(points.contains(&(1, 1)), true);
-        assert_eq!(points.contains(&(2, 1)), true);
-        assert_eq!(points.contains(&(3, 1)), true);
-        assert_eq!(points.contains(&(3, 2)), true);
-        assert_eq!(points.contains(&(4, 2)), true);
-        assert_eq!(points.contains(&(5, 2)), true);
-        assert_eq!(points.contains(&(6, 3)), true);
-        assert_eq!(points.contains(&(7, 3)), true);
-        assert_eq!(points.contains(&(8, 3)), true);
-        assert_eq!(points.contains(&(8, 4)), true);
-        assert_eq!(points.contains(&(9, 4)), true);
-        assert_eq!(points.contains(&(10, 4)), true);
-        assert_eq!(points.contains(&(10, 5)), true);
+        assert!(points.contains(&(1, 0)));
+        assert!(points.contains(&(1, 1)));
+        assert!(points.contains(&(2, 1)));
+        assert!(points.contains(&(3, 1)));
+        assert!(points.contains(&(3, 2)));
+        assert!(points.contains(&(4, 2)));
+        assert!(points.contains(&(5, 2)));
+        assert!(points.contains(&(6, 3)));
+        assert!(points.contains(&(7, 3)));
+        assert!(points.contains(&(8, 3)));
+        assert!(points.contains(&(8, 4)));
+        assert!(points.contains(&(9, 4)));
+        assert!(points.contains(&(10, 4)));
+        assert!(points.contains(&(10, 5)));
         assert_eq!(points.len(), 14);
     }
 
@@ -163,20 +163,20 @@ mod tests {
     fn test_long_line_one_diagonal_intersection_flipped() {
         let points: Vec<Point> = LineRasterizer::new((0, 0), (11, -5)).collect();
 
-        assert_eq!(points.contains(&(1, 0)), true);
-        assert_eq!(points.contains(&(1, -1)), true);
-        assert_eq!(points.contains(&(2, -1)), true);
-        assert_eq!(points.contains(&(3, -1)), true);
-        assert_eq!(points.contains(&(3, -2)), true);
-        assert_eq!(points.contains(&(4, -2)), true);
-        assert_eq!(points.contains(&(5, -2)), true);
-        assert_eq!(points.contains(&(6, -3)), true);
-        assert_eq!(points.contains(&(7, -3)), true);
-        assert_eq!(points.contains(&(8, -3)), true);
-        assert_eq!(points.contains(&(8, -4)), true);
-        assert_eq!(points.contains(&(9, -4)), true);
-        assert_eq!(points.contains(&(10, -4)), true);
-        assert_eq!(points.contains(&(10, -5)), true);
+        assert!(points.contains(&(1, 0)));
+        assert!(points.contains(&(1, -1)));
+        assert!(points.contains(&(2, -1)));
+        assert!(points.contains(&(3, -1)));
+        assert!(points.contains(&(3, -2)));
+        assert!(points.contains(&(4, -2)));
+        assert!(points.contains(&(5, -2)));
+        assert!(points.contains(&(6, -3)));
+        assert!(points.contains(&(7, -3)));
+        assert!(points.contains(&(8, -3)));
+        assert!(points.contains(&(8, -4)));
+        assert!(points.contains(&(9, -4)));
+        assert!(points.contains(&(10, -4)));
+        assert!(points.contains(&(10, -5)));
         assert_eq!(points.len(), 14);
     }
 }
